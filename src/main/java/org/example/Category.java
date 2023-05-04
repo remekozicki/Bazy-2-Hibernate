@@ -26,4 +26,16 @@ public class Category {
     public void setProducts(Product product) {
         Products.add(product);
     }
+
+    public int getCategoryID() {
+        return CategoryID;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public List<Product> getProducts() {
+        return Products;
+    }
 }

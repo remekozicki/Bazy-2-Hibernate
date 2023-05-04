@@ -29,12 +29,6 @@ public class Main {
     }
 
     public static void main(final String[] args) throws Exception {
-//        Product product1 = new Product("Flamaster", 400);
-//        Product product2 = new Product("Kredka", 100);
-//        Product product3 = new Product("Linijka", 1000);
-//        Supplier supplier = new Supplier("KredkaPol", "Papiernicza", "Warszawa");
-//        Category category = new Category(3, "Przybory Szkolne");
-
 
 
         final Session session = getSession();
@@ -42,13 +36,16 @@ public class Main {
         try {
             Transaction tx = session.beginTransaction();
 
-            String hql = "select ProductName from  Product P join Category C on P.C = C.CategoryID";
-            Query q = session.createQuery(hql);
-            List<String> list  = q.getResultList();
-            for (String s: list){
-                System.out.println(s);
-            }
+            Query query = session.createQuery("from Category ");
+            List<Category> categoryList = query.getResultList();
+            for (Category c: categoryList) {
+                System.out.println(c.getName());
+                for (Product p: c.getProducts()) {
+                    System.out.println(p.getProductName());
+                }
 
+
+            }
 
             tx.commit();
         } finally {
@@ -59,3 +56,4 @@ public class Main {
 
     }
 }
+
