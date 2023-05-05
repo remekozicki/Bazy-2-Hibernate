@@ -11,7 +11,7 @@ public class Invoice {
 //    @GeneratedValue(strategy = GenerationType.AUTO)
     private int InvoiceNumber;
     private int Quantity;
-    @ManyToMany
+    @ManyToMany (cascade = {CascadeType.PERSIST})
     Set<Product> sellProducts;
 
     public Invoice(){}

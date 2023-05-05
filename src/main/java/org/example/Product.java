@@ -17,7 +17,7 @@ public class Product {
     @JoinColumn (name = "SUPPLIER_FK")
     private Supplier supplier;
 
-    @ManyToMany(mappedBy = "sellProducts")
+    @ManyToMany(mappedBy = "sellProducts", cascade = {CascadeType.PERSIST})
     private Set<Invoice> Invoices;
 
 

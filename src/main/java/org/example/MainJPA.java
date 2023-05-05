@@ -60,7 +60,7 @@ public class MainJPA {
             System.out.println(p.getProductName());
         }
 
-        Product foundProduct = (Product) em.find(Product.class,11);
+        Product foundProduct = (Product) em.find(Product.class,1);
         System.out.println("Gdzie występuje produkty " + foundProduct.getProductName());
         for (Invoice i: foundProduct.getInvoices()) {
             System.out.println(i.toString());
