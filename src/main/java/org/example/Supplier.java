@@ -4,44 +4,20 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Entity
-public class Supplier {
+public class Supplier extends Company {
 
-    @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+//    @OneToMany
+//    private Set<Product> productsGroup =new HashSet<>();
 
-    private int ID;
-
-    private String CompanyName;
-    private String Street;
-    private String City;
-    @OneToMany
-//    @JoinColumn (name = "SUPPLIER_FK")
-    private Set<Product> productsGroup;
+    private String bankAccountNumber;
 
     public Supplier(){}
 
-    public Supplier(String companyName, String street, String city){
-        this.CompanyName = companyName;
-        this.Street = street;
-        this.City = city;
-        this.productsGroup = new HashSet<>();
+    public Supplier(String companyName, String street, String city, String zipCode, String bankAccountNumber) {
+        super(companyName, street, city, zipCode);
+        this.bankAccountNumber = bankAccountNumber;
 
-    }
-
-    public void setStreet(String street) {
-        Street = street;
-    }
-
-    public void setCity(String city) {
-        City = city;
-    }
-
-    public void setCompanyName(String companyName) {
-        CompanyName = companyName;
-    }
-
-    public void addProductToProductGroup(Product product){
-        this.productsGroup.add(product);
     }
 }

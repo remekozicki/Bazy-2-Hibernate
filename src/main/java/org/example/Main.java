@@ -36,16 +36,6 @@ public class Main {
         try {
             Transaction tx = session.beginTransaction();
 
-            Query query = session.createQuery("from Category ");
-            List<Category> categoryList = query.getResultList();
-            for (Category c: categoryList) {
-                System.out.println(c.getName());
-                for (Product p: c.getProducts()) {
-                    System.out.println(p.getProductName());
-                }
-
-
-            }
 
             tx.commit();
         } finally {

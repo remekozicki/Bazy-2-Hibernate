@@ -17,5 +17,7 @@
         <mapping class="org.example.Supplier"></mapping>
         <mapping class="org.example.Category"></mapping>
         <mapping class="org.example.Invoice"></mapping>
+        <mapping class="org.example.Customer"></mapping>
+        <mapping class="org.example.Company"></mapping>
     </session-factory>
 </hibernate-configuration>

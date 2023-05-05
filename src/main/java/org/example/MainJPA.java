@@ -15,56 +15,27 @@ public class MainJPA {
         EntityTransaction etx = em.getTransaction();
         etx.begin();
 
-        Product product1 = new Product("Kapusta", 10);
-        Product product2 = new Product("Groch", 11);
-        Product product3 = new Product("Gruszka", 12);
-        Product product4 = new Product("Avokado", 13);
-        Product product5 = new Product("Sliwka", 14);
-        Product product6 = new Product("Pyra", 15);
-        Product product7 = new Product("Pomidor", 16);
-        Product product8 = new Product("Banan", 17);
-        Invoice invoice1 = new Invoice(1, 5);
-        Invoice invoice2 = new Invoice(2,10);
+        Customer custmer1 = new Customer("Blachy Jurka", "Malinowa", "Warszawa", "12-120", 0.2);
+        Customer custmer2 = new Customer("Wykonczenówka", "Pomidorowa", "Warszawa", "13-130", 0.1);
+        Customer custmer3 = new Customer("BOSS", "Wesoła", "Warszawa", "14-140", 0.15);
 
-        em.persist(product1);
-        em.persist(product2);
-        em.persist(product3);
-        em.persist(product4);
-        em.persist(product5);
-        em.persist(product6);
-        em.persist(product7);
-        em.persist(product8);
+        Supplier supplier1 = new Supplier("hurtBlachy", "Hurtowa", "Wrocław", "10-100", "1234567890");
+        Supplier supplier2 = new Supplier("hurtCegła", "Hurtowa", "Wrocław", "10-100", "1234567890");
+        Supplier supplier3 = new Supplier("hurtKable", "Hurtowa", "Wrocław", "10-100", "1234567890");
 
-        em.persist(invoice1);
-        em.persist(invoice2);
+        em.persist(custmer1);
+        em.persist(custmer2);
+        em.persist(custmer3);
 
-        invoice1.sellProduct(product1);
-        invoice1.sellProduct(product2);
-        invoice1.sellProduct(product5);
+        em.persist(supplier1);
+        em.persist(supplier2);
+        em.persist(supplier3);
 
-        invoice2.sellProduct(product3);
-        invoice2.sellProduct(product4);
-        invoice2.sellProduct(product6);
+        Supplier foundSupplier = (Supplier) em.find(Supplier.class, 4);
+        System.out.println(foundSupplier.getCompanyName());
 
-        product1.addInvoices(invoice1);
-        product2.addInvoices(invoice1);
-        product5.addInvoices(invoice1);
-
-        product3.addInvoices(invoice2);
-        product4.addInvoices(invoice2);
-        product6.addInvoices(invoice2);
-
-        Invoice foundInvoice = (Invoice) em.find(Invoice.class, 1);
-        System.out.println("Produkty z faltury" + foundInvoice.toString());
-        for (Product p: foundInvoice.getProducts()) {
-            System.out.println(p.getProductName());
-        }
-
-        Product foundProduct = (Product) em.find(Product.class,1);
-        System.out.println("Gdzie występuje produkty " + foundProduct.getProductName());
-        for (Invoice i: foundProduct.getInvoices()) {
-            System.out.println(i.toString());
-        }
+        Customer foundCustomer = (Customer) em.find(Customer.class, 1);
+        System.out.println(foundCustomer.getCompanyName());
 
         etx.commit();
         em.close();
